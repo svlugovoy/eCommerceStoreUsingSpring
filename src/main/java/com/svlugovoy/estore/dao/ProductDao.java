@@ -2,6 +2,7 @@ package com.svlugovoy.estore.dao;
 
 import com.svlugovoy.estore.model.Product;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +13,10 @@ public class ProductDao {
 
     private List<Product> productList;
 
-    public List<Product> getProductList(){
+    public List<Product> getProductList() {
         Product product1 = new Product();
 
+        product1.setProductId("1");
         product1.setProductName("Camera1");
         product1.setProductCategory("Device");
         product1.setProductDescription("This is Canon start camera");
@@ -26,6 +28,7 @@ public class ProductDao {
 
         Product product2 = new Product();
 
+        product2.setProductId("2");
         product2.setProductName("Camera2");
         product2.setProductCategory("Device");
         product2.setProductDescription("This is Nikon non-pro camera");
@@ -43,4 +46,13 @@ public class ProductDao {
     }
 
 
+    public Product getProductById(String productId) throws IOException {
+        for (Product product : getProductList()) {
+            if (product.getProductId().equals(productId)) {
+                return product;
+            }
+        }
+
+        throw new IOException("No product found.");
+    }
 }
