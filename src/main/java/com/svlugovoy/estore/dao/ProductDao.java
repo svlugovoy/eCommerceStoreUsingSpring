@@ -24,8 +24,20 @@ public class ProductDao {
         product1.setUnitInStock(11);
         product1.setProductManufacturer("Canon");
 
+        Product product2 = new Product();
+
+        product2.setProductName("Camera2");
+        product2.setProductCategory("Device");
+        product2.setProductDescription("This is Nikon non-pro camera");
+        product2.setProductPrice(300);
+        product2.setProductCondition("new");
+        product2.setProductStatus("Active");
+        product2.setUnitInStock(8);
+        product2.setProductManufacturer("Nikon");
+
         productList = new ArrayList<Product>();
         productList.add(product1);
+        productList.add(product2);
 
         return productList;
     }
