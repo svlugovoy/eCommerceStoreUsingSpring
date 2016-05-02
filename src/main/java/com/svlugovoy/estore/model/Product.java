@@ -1,9 +1,8 @@
 package com.svlugovoy.estore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.*;
 
 /**
  * @author Sergey Lugovoy <svlugovoy@gmail.com> 01.05.2016.
@@ -24,6 +23,9 @@ public class Product {
     private String productStatus;
     private int unitInStock;
     private String productManufacturer;
+
+    @Transient
+    private MultipartFile productImage;
 
     public String getProductId() {
         return productId;
@@ -95,5 +97,13 @@ public class Product {
 
     public void setProductStatus(String productStatus) {
         this.productStatus = productStatus;
+    }
+
+    public MultipartFile getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
     }
 }
