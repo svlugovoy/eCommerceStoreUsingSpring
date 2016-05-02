@@ -1,11 +1,21 @@
 package com.svlugovoy.estore.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * @author Sergey Lugovoy <svlugovoy@gmail.com> 01.05.2016.
  */
+
+@Entity
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String productId;
+
     private String productName;
     private String productCategory;
     private String productDescription;

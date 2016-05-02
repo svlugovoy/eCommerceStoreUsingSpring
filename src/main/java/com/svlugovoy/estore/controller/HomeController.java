@@ -3,6 +3,7 @@ package com.svlugovoy.estore.controller;
 import com.svlugovoy.estore.dao.ProductDao;
 import com.svlugovoy.estore.model.Product;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,8 @@ public class HomeController {
 
     private static final Logger log = Logger.getLogger(HomeController.class);
 
-    private ProductDao productDao = new ProductDao();
+    @Autowired
+    private ProductDao productDao;
 
     @RequestMapping("/")
     public String home() {
@@ -30,7 +32,7 @@ public class HomeController {
 
     @RequestMapping("/productList")
     public String getProducts(Model model) {
-        List<Product> products = productDao.getProductList();
+        List<Product> products = productDao.getAllProducts();
         model.addAttribute("products", products);
 
         return "productList";
