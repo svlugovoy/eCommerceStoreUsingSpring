@@ -1,8 +1,10 @@
 package com.svlugovoy.estore.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 /**
  * @author Sergey Lugovoy <svlugovoy@gmail.com> 01.05.2016.
@@ -15,12 +17,17 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String productId;
 
+    @NotEmpty(message = "The product name must not be null.")
     private String productName;
     private String productCategory;
     private String productDescription;
+
+    @Min(value = 0, message = "The product price must not be less then zero.")
     private double productPrice;
     private String productCondition;
     private String productStatus;
+
+    @Min(value = 0, message = "The product unit must not be less then zero.")
     private int unitInStock;
     private String productManufacturer;
 
