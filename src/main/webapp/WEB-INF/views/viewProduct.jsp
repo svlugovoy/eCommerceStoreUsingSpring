@@ -1,5 +1,6 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@include file="/WEB-INF/views/template/header.jsp"%>
+<%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="/WEB-INF/views/template/header.jsp" %>
 
 <div class="container-wrapper">
     <div class="container">
@@ -10,7 +11,7 @@
             <p class="lead">Detail information about product</p>
         </div>
 
-        <div class="container">
+        <div class="container" ng-app="cartApp">
             <div class="row">
                 <div class="col-md-5">
                     <img src="<c:url value="/resources/images/${product.productId}.png" />"
@@ -23,9 +24,30 @@
                     <p><strong>Category</strong> : ${product.productCategory}</p>
                     <p><strong>Condition</strong> : ${product.productCondition}</p>
                     <h4>${product.productPrice} USD</h4>
+
+                    <br>
+
+                    <c:set var="role" scope="page" value="${param.role}"/>
+                    <c:set var="url" scope="page" value="/productList"/>
+                    <c:if test="${role='admin'}">
+                        <c:set var="url" scope="page" value="/admin/productInventory"/>
+                    </c:if>
+
+                    <p ng-controller="cartCtrl">
+                        <a href="<c:url value="${url}" />" class="btn btn-default">Back</a>
+                        <a href="" class="btn btn-warning btn-lg" ng-click="addToCart('${product.productId}')">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Order Now</a>
+                        <a href="<spring:url value="/cart" />" class="btn btn-default">
+                            <span class="glyphicon glyphicon-hand-right"></span> View Cart</a>
+                    </p>
                 </div>
             </div>
         </div>
 
 
-<%@include file="/WEB-INF/views/template/footer.jsp"%>
+
+
+
+<script src="<c:url value="/resources/js/controller.js" />"></script>
+
+<%@include file="/WEB-INF/views/template/footer.jsp" %>

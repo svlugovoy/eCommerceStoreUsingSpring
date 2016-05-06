@@ -27,9 +27,7 @@ public class CartController {
     private ProductDao productDao;
 
     @RequestMapping(value = "/{cartId}", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    Cart read(@PathVariable(value = "cartId") String cartId) {
+    public @ResponseBody Cart read(@PathVariable(value = "cartId") String cartId) {
 
         return cartDao.read(cartId);
     }
