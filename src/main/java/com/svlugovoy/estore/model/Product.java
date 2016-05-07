@@ -1,17 +1,22 @@
 package com.svlugovoy.estore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Sergey Lugovoy <svlugovoy@gmail.com> 01.05.2016.
  */
 
 @Entity
-public class Product {
+public class Product implements Serializable {
+
+    private static final long serialVersionUID = -2274350830267798848L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,6 +38,10 @@ public class Product {
 
     @Transient
     private MultipartFile productImage;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    List<CartItem> cartItemList;
 
     public String getProductId() {
         return productId;
@@ -112,5 +121,13 @@ public class Product {
 
     public void setProductImage(MultipartFile productImage) {
         this.productImage = productImage;
+    }
+
+    public List<CartItem> getCartItemList() {
+        return cartItemList;
+    }
+
+    public void setCartItemList(List<CartItem> cartItemList) {
+        this.cartItemList = cartItemList;
     }
 }
