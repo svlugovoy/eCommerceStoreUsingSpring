@@ -1,13 +1,14 @@
-package com.svlugovoy.estore.dao;
+package com.svlugovoy.estore.service;
 
 import com.svlugovoy.estore.model.Product;
 
 import java.util.List;
 
 /**
- * @author Sergey Lugovoy <svlugovoy@gmail.com> 02.05.2016.
+ * @author Sergey Lugovoy <svlugovoy@gmail.com> 08.05.2016.
  */
-public interface ProductDao {
+
+public interface ProductService {
 
     List<Product> getProductList();
 
