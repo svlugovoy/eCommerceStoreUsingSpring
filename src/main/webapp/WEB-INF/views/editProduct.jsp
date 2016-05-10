@@ -10,7 +10,7 @@
             <p class="lead">Change the bellow information to edit a product:</p>
         </div>
 
-        <form:form action="${pageContext.request.contextPath}/admin/productInventory/editProduct" method="post"
+        <form:form action="${pageContext.request.contextPath}/admin/product/editProduct" method="post"
                    commandName="product" enctype="multipart/form-data">
 
        <form:hidden path="productId" value="${product.productId}" />

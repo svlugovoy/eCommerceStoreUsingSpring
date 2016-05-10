@@ -10,7 +10,7 @@
             <p class="lead">Fill the bellow information to add a product:</p>
         </div>
 
-        <form:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct" method="post"
+        <form:form action="${pageContext.request.contextPath}/admin/product/addProduct" method="post"
                    commandName="product" enctype="multipart/form-data">
 
         <div class="form-group">
@@ -38,13 +38,13 @@
         <div class="form-group">
             <label for="condition">Condition</label>
             <label class="checkbox-inline"><form:radiobutton path="productCondition" id="condition" value="new" /> New</label>
-            <label class="checkbox-inline"><form:radiobutton path="productCondition" id="condition" value="usedm" /> Used</label>
+            <label class="checkbox-inline"><form:radiobutton path="productCondition" id="condition" value="used" /> Used</label>
         </div>
 
         <div class="form-group">
             <label for="status">Status</label>
             <label class="checkbox-inline"><form:radiobutton path="productStatus" id="status" value="active" /> Active</label>
-            <label class="checkbox-inline"><form:radiobutton path="productStatus" id="status" value="inactivem" /> Inactive</label>
+            <label class="checkbox-inline"><form:radiobutton path="productStatus" id="status" value="inactive" /> Inactive</label>
         </div>
 
         <div class="form-group">
