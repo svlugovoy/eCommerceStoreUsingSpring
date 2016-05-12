@@ -2,6 +2,7 @@ package com.svlugovoy.estore.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -12,8 +13,8 @@ import javax.persistence.Id;
 public class Users {
 
     @Id
-    @GeneratedValue
-    private int userId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int usersId;
     private String username;
     private String password;
     private boolean enabled;
@@ -51,11 +52,11 @@ public class Users {
         this.password = password;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUsersId() {
+        return usersId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUsersId(int usersId) {
+        this.usersId = usersId;
     }
 }
