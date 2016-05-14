@@ -2,11 +2,11 @@ package com.svlugovoy.estore.dao.impl;
 
 import com.svlugovoy.estore.dao.CartDao;
 import com.svlugovoy.estore.model.Cart;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Sergey Lugovoy <svlugovoy@gmail.com> 05.05.2016.
@@ -16,48 +16,21 @@ import java.util.Map;
 @Transactional
 public class CartDaoImpl implements CartDao {
 
-    private Map<String, Cart> listOfCarts;
+    @Autowired
+    SessionFactory sessionFactory;
 
-    public CartDaoImpl() {
-        listOfCarts = new HashMap<String, Cart>();
+    @Override
+    public Cart getCartById(int cartId) {
+
+        Session session = sessionFactory.getCurrentSession();
+
+        return (Cart) session.get(Cart.class, cartId);
     }
 
     @Override
-    public Cart create(Cart cart) {
+    public void update(Cart cart) {
 
-        if (listOfCarts.keySet().contains(cart.getCartId())) {
-            throw new IllegalArgumentException(String.format(
-                    "Can not create a cart. A cart with given id(%) already exists.", cart.getCartId()));
-        }
-        listOfCarts.put(String.valueOf(cart.getCartId()), cart);
-
-        return cart;
+        int cartId = cart.getCartId();
+        //to do later
     }
-
-    @Override
-    public Cart read(String cartId) {
-
-        return listOfCarts.get(cartId);
-    }
-
-    @Override
-    public void update(String cartId, Cart cart) {
-
-        if (!listOfCarts.keySet().contains(cartId)){
-            throw new IllegalArgumentException(String.format(
-                    "Can not update cart. The cart with given id(%) does not exists.", cart.getCartId()));
-        }
-        listOfCarts.put(cartId, cart);
-    }
-
-    @Override
-    public void delete(String cartId) {
-
-        if (!listOfCarts.keySet().contains(cartId)){
-            throw new IllegalArgumentException(String.format(
-                    "Can not delete cart. The cart with given id(%) does not exists.", cartId));
-        }
-        listOfCarts.remove(cartId);
-    }
-
 }

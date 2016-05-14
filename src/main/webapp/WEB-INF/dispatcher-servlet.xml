@@ -12,10 +12,9 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-
     <mvc:annotation-driven>
         <mvc:argument-resolvers>
-            <bean class="org.springframework.security.bind.support.AuthenticationPrincipalArgumentResolver" />
+            <bean class="org.springframework.security.web.bind.support.AuthenticationPrincipalArgumentResolver"/>
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
