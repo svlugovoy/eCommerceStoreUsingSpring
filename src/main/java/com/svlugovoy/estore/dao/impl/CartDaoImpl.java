@@ -2,6 +2,7 @@ package com.svlugovoy.estore.dao.impl;
 
 import com.svlugovoy.estore.dao.CartDao;
 import com.svlugovoy.estore.model.Cart;
+import com.svlugovoy.estore.service.CustomerOrderService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class CartDaoImpl implements CartDao {
 
     @Autowired
     SessionFactory sessionFactory;
+
+    @Autowired
+    private CustomerOrderService customerOrderService;
 
     @Override
     public Cart getCartById(int cartId) {
@@ -42,9 +46,13 @@ public class CartDaoImpl implements CartDao {
     }
 
     @Override
-    public void update(Cart cart) {
-
+    public void update(Cart cart){
         int cartId = cart.getCartId();
-        //to do later
+        double grandTotal = customerOrderService.getCustomerOrderGrandTotal(cartId);
+        cart.setGrandTotal(grandTotal);
+
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(cart);
     }
+
 }
